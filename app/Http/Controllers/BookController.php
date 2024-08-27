@@ -49,11 +49,11 @@ class BookController extends Controller
         return redirect()->route('books.index')->with('success', 'Kitap başarıyla eklendi!');
     }
 
-    public function show($id)
+    public function show(Book $book)
     {
-        $book = Book::findOrFail($id);
         return view('books.show', compact('book'));
     }
+
 
     public function edit($id)
     {
