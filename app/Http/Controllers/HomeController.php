@@ -27,4 +27,12 @@ class HomeController extends Controller
         $books = Book::all();
         return view('home', compact('books'));
     }
+    public function show(Book $book)
+    {
+        // Kullanıcıyı geri döndürecek URL'yi oturumda sakliyoruz
+        session(['previous_url' => url()->previous()]);
+
+        return view('books.show', compact('book'));
+    }
+
 }
