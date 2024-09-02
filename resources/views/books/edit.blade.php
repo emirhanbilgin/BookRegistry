@@ -47,7 +47,7 @@
                 <input type="file" class="form-control" id="cover_image" name="cover_image" accept=".jpg,.png,jpeg">
                 @if(isset($book) && $book->cover_image)
                     <p>Mevcut Kapak Görseli:</p>
-                    <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Kitap Kapak Görseli" style="max-width: 200px;">
+                    <img src="{{ asset('storage/' . $book->cover_image) }}" alt="{{ $book->title }}" style="max-width: 200px; max-height: 300px; width: auto; height: auto;">
                 @endif
             </div>
 

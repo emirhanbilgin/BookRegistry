@@ -22,6 +22,17 @@
             margin-left: 20px; /* Bu değeri ihtiyacınıza göre ayarlayın */
         }
     </style>
+
+    <style>
+        .book-cover-image {
+            max-width: 200px;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+            object-fit: cover; /* Görüntüyü belirlenen alana sığdırır, taşan kısımlar kesilir */
+        }
+    </style>
+
 </head>
 <body>
 <div id="app">

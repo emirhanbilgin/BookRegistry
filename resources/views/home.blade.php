@@ -19,7 +19,7 @@
 
                         <h3>Kitap Listesi</h3>
                         @if($books->count() > 0)
-                            <ul class="list-group">
+                            <ul class="list-group mb-3">
                                 @foreach($books as $book)
                                     <li class="list-group-item">
                                         <a href="{{ route('books.show', $book->id) }}" onclick="sessionStorage.setItem('previousPage', '/home')">{{ $book->title }}</a>
@@ -30,7 +30,10 @@
                             <p>Henüz eklenmiş bir kitap yok.</p>
                         @endif
 
-                        <a href="{{ route('books.create') }}" class="btn btn-primary mt-3">Kitap Ekle</a>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('books.create') }}" class="btn btn-primary btn-sm">Kitap Ekle</a>
+                            <a href="{{ route('books.index') }}" class="btn btn-sm" style="background-color: #FFA500; color: white;">Kitap Yönetimi</a>
+                        </div>
                     </div>
                 </div>
             </div>

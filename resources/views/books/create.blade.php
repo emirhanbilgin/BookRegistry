@@ -37,12 +37,17 @@
                 </select>
             </div>
 
-            <div class="form-group">
+            <!-- Eger yazar bulunamadıysa butonu -->
+            <div class="form-group mt-3">
+                <a href="{{ url('/home') }}" class="btn btn-warning">Aradığınız yazarı bulamadıysanız lütfen tıklayın</a>
+            </div>
+
+            <div class="form-group mt-3">
                 <label for="isbn">ISBN Numarası:</label>
                 <input type="text" class="form-control" id="isbn" name="isbn" value="{{ old('isbn', $book->isbn ?? '') }}" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <label for="cover_image">Kitap Kapak Görseli (opsiyonel):</label>
                 <input type="file" class="form-control" id="cover_image" name="cover_image" accept=".jpg,.png,jpeg">
                 @if(isset($book) && $book->cover_image)
@@ -51,15 +56,13 @@
                 @endif
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <label for="bookstores">Kitap Satış Noktaları:</label>
                 <input type="text" name="bookstores" id="bookstores" class="form-control" placeholder="Kitap satış noktalarını buraya girin" />
             </div>
 
-
-
-
-            <button type="submit" class="btn btn-primary">{{ isset($book) ? 'Güncelle' : 'Ekle' }}</button>
+            <!-- Ekle Butonu -->
+            <button type="submit" class="btn btn-success mt-3">{{ isset($book) ? 'Güncelle' : 'Ekle' }}</button>
         </form>
     </div>
 @endsection
