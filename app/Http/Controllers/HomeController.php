@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Book;
 
 class HomeController extends Controller
@@ -25,8 +24,10 @@ class HomeController extends Controller
     public function index()
     {
         $books = Book::all();
+
         return view('home', compact('books'));
     }
+
     public function show(Book $book)
     {
         // Kullanıcıyı geri döndürecek URL'yi oturumda sakliyoruz
@@ -34,5 +35,4 @@ class HomeController extends Controller
 
         return view('books.show', compact('book'));
     }
-
 }
