@@ -56,10 +56,13 @@
                 @endif
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group">
                 <label for="bookstores">Kitap Satış Noktaları:</label>
-                <input type="text" name="bookstores" id="bookstores" class="form-control" placeholder="Kitap satış noktalarını buraya girin" />
+                <input type="text" name="bookstores" id="bookstores" class="form-control" placeholder="Kitap satış noktalarını virgülle ayırarak yazın" value="{{ old('bookstores') }}">
             </div>
+
+
+
 
             <!-- Ekle Butonu -->
             <button type="submit" class="btn btn-success mt-3">{{ isset($book) ? 'Güncelle' : 'Ekle' }}</button>
