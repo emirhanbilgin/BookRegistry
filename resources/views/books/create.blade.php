@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h1>{{ isset($book) ? 'Kitabı Düzenle' : 'Kitap Ekle' }}</h1>
+        <h1>Kitap Ekle</h1>
 
+        <!-- Hata Mesajları -->
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -14,15 +15,13 @@
             </div>
         @endif
 
-        <form action="{{ isset($book) ? route('books.update', $book->id) : route('books.store') }}" method="POST" enctype="multipart/form-data">
+        <!-- Kitap Ekleme Formu -->
+        <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @if(isset($book))
-                @method('PUT')
-            @endif
 
             <div class="form-group">
                 <label for="title">Kitap Adı:</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $book->title ?? '') }}" required>
+                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" required>
             </div>
 
             <div class="form-group">
@@ -30,7 +29,7 @@
                 <select class="form-control" id="author_id" name="author_id" required>
                     <option value="">Yazar Seçin</option>
                     @foreach($authors as $author)
-                        <option value="{{ $author->id }}" {{ (old('author_id') ?? $book->author_id ?? '') == $author->id ? 'selected' : '' }}>
+                        <option value="{{ $author->id }}" {{ old('author_id') == $author->id ? 'selected' : '' }}>
                             {{ $author->name }}
                         </option>
                     @endforeach
@@ -44,28 +43,21 @@
 
             <div class="form-group mt-3">
                 <label for="isbn">ISBN Numarası:</label>
-                <input type="text" class="form-control" id="isbn" name="isbn" value="{{ old('isbn', $book->isbn ?? '') }}" required>
+                <input type="text" class="form-control" id="isbn" name="isbn" value="{{ old('isbn') }}" required>
             </div>
 
             <div class="form-group mt-3">
                 <label for="cover_image">Kitap Kapak Görseli (opsiyonel):</label>
                 <input type="file" class="form-control" id="cover_image" name="cover_image" accept=".jpg,.png,jpeg">
-                @if(isset($book) && $book->cover_image)
-                    <p>Mevcut Kapak Görseli:</p>
-                    <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Kitap Kapak Görseli" style="max-width: 200px;">
-                @endif
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <label for="bookstores">Kitap Satış Noktaları:</label>
                 <input type="text" name="bookstores" id="bookstores" class="form-control" placeholder="Kitap satış noktalarını virgülle ayırarak yazın" value="{{ old('bookstores') }}">
             </div>
 
-
-
-
             <!-- Ekle Butonu -->
-            <button type="submit" class="btn btn-success mt-3">{{ isset($book) ? 'Güncelle' : 'Ekle' }}</button>
+            <button type="submit" class="btn btn-success mt-3">Ekle</button>
         </form>
     </div>
 @endsection
