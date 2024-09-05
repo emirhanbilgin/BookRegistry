@@ -13,17 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->foreignId('author_id')->constrained('authors'); // authors tablosuna bağlantı
-            $table->string('isbn')->unique();
-            $table->string('cover_image')->nullable();
-            $table->timestamps();
-        });
-
         Schema::table('books', function (Blueprint $table) {
-            $table->dropColumn('author'); // Gereksiz 'author' sütununu kaldır
+            $table->dropColumn('author'); // 'author' sütununu kaldır
         });
     }
 
@@ -37,7 +28,5 @@ return new class extends Migration
         Schema::table('books', function (Blueprint $table) {
             $table->string('author'); // Rollback durumunda 'author' sütununu geri ekle
         });
-
-        Schema::dropIfExists('books');
     }
 };
